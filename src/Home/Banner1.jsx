@@ -42,7 +42,7 @@ class Banner extends React.PureComponent {
             </div>
             <Button ghost key="button" {...button} 
             onClick={() => {
-              console.log(i)
+              window.location = "./Vaccinations"
             }}>
               {button.children}
             </Button>
