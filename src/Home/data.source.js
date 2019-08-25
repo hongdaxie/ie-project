@@ -357,10 +357,10 @@ export const Footer00DataSource = {
         xs: 24,
         md: 6,
         className: 'block',
-        title: { children: 'News & events' },
+        title: { children: 'Flu Vaccination' },
         childWrapper: {
           children: [
-            { name: 'news1', href: '/Vaccinations', children: 'News1' },
+            { name: 'info', href: '/Vaccinations', children: 'Info' },
           ],
         },
       },
