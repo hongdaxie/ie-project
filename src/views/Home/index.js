@@ -1,25 +1,59 @@
 import React, { Component } from 'react'
-import {Carousel} from 'antd'
-import './home.less'
+import Banner from '../../Home/Banner1';
+import Content3 from '../../Home/Content3';
+import { enquireScreen } from 'enquire-js';
+import {  
+    Banner10DataSource,
+    Content30DataSource,
+} from '../../Home/data.source';
+
+let isMobile;
+  enquireScreen((b) => {
+  isMobile = b;
+});
+
+const { location } = window;
+
 
 export default class Home extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          isMobile,
+          show: !location.port,
+        };
+      }
+
+    componentDidMount() {
+        enquireScreen((b) => {
+          this.setState({ isMobile: !!b });
+        });
+
+        if (location.port) {
+          setTimeout(() => {
+          this.setState({
+            show: true,
+          });
+        }, 500);
+      }
+    }
+
     render() {
         return (
             <div>
-                <Carousel autoplay>
-                    <div>
-                    <h3>1</h3>
-                    </div>
-                    <div>
-                    <h3>2</h3>
-                    </div>
-                    <div>
-                    <h3>3</h3>
-                    </div>
-                    <div>
-                    <h3>4</h3>
-                    </div>
-                </Carousel>
+                <Banner
+                    id="Banner1_0"
+                    key="Banner1_0"
+                    dataSource={Banner10DataSource}
+                    isMobile={this.state.isMobile}
+                />
+                <Content3
+                    id="Content3_0"
+                    key="Content3_0"
+                    dataSource={Content30DataSource}
+                    isMobile={this.state.isMobile}
+                />
             </div>
         )
     }

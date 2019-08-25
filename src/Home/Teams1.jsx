@@ -4,17 +4,13 @@ import { Row, Col } from 'antd';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 import { getChildrenToRender } from './utils';
 
-class Content extends React.PureComponent {
+class Teams1 extends React.PureComponent {
   getBlockChildren = (data) =>
     data.map((item, i) => {
-      const children = item.children;
+      const { titleWrapper, ...$item } = item;
       return (
-        <Col key={i.toString()} {...item}>
-          <div {...children.icon}>
-            <img src={children.icon.children} width="100%" alt="img" />
-          </div>
-          <h3 {...children.title}>{children.title.children}</h3>
-          <div {...children.content}>{children.content.children}</div>
+        <Col key={i.toString()} {...$item}>
+          {titleWrapper.children.map(getChildrenToRender)}
         </Col>
       );
     });
@@ -48,4 +44,4 @@ class Content extends React.PureComponent {
   }
 }
 
-export default Content;
+export default Teams1;
