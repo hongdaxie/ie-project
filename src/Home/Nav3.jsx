@@ -2,7 +2,7 @@ import React from 'react';
 import TweenOne from 'rc-tween-one';
 import { Menu } from 'antd';
 import { getChildrenToRender } from './utils';
-import { withRouter } from "react-router-dom"
+import { withRouter,Link } from "react-router-dom"
 
 const { Item, SubMenu } = Menu;
 
@@ -91,7 +91,7 @@ class Header extends React.Component {
             animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
             {...dataSource.logo}
           >
-            <img width="100%" src={dataSource.logo.children} alt="img" />
+            <Link to='./Home'><img width="100%" src={dataSource.logo.children} alt="img" /></Link>
           </TweenOne>
           {isMobile && (
             <div

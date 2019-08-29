@@ -25,6 +25,7 @@ class App extends Component {
           })}
             <Redirect to="/Home" from="/" exact />
             <Redirect to="/404" />
+            <Route component={mainRoutes[-1]} />
           </Switch>
         </Frame>
       </Router>

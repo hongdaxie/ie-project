@@ -40,10 +40,12 @@ class Banner extends React.PureComponent {
             <div key="content" {...content}>
               {content.children}
             </div>
-            <Button ghost key="button" {...button} 
-            onClick={() => {
-              window.location = "./Vaccinations"
-            }}>
+            <Button ghost 
+            type="primary"
+            style={{color:'#1890ff',borderColor:'#1890ff'}}
+            key="button" {...button} 
+            href="./Vaccinations"
+            >
               {button.children}
             </Button>
           </QueueAnim>
@@ -72,7 +74,7 @@ class Banner extends React.PureComponent {
             duration: 1000,
           }}
           className="banner1-icon"
-          style={{ bottom: 40 }}
+          style={{ bottom:80 }}
           key="icon"
         >
           <Icon type="down" />
