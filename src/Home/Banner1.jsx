@@ -53,7 +53,7 @@ class Banner extends React.PureComponent {
       );
     });
     return (
-      <div {...props} {...dataSource.wrapper} style={{height:700}}>
+      <div {...props} {...dataSource.wrapper} style={{height:650}}>
         <TweenOneGroup
           key="bannerGroup"
           enter={{ opacity: 0, type: 'from' }}
