@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon } from 'antd';
+// import { Button, Icon } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne, { TweenOneGroup } from 'rc-tween-one';
 import BannerAnim, { Element } from 'rc-banner-anim';
@@ -19,7 +19,7 @@ class Banner extends React.PureComponent {
       const elem = item.BannerElement;
       const elemClassName = elem.className;
       delete elem.className;
-      const { bg, textWrapper, title, content, button } = item;
+      const { bg, textWrapper, title, content } = item;
       return (
         <Element key={i.toString()} {...elem} prefixCls={elemClassName}>
           <BgElement key="bg" {...bg} />
@@ -40,20 +40,20 @@ class Banner extends React.PureComponent {
             <div key="content" {...content}>
               {content.children}
             </div>
-            <Button ghost 
+            {/* <Button ghost 
             type="primary"
             style={{color:'#1890ff',borderColor:'#1890ff'}}
             key="button" {...button} 
             href="./Vaccinations"
             >
               {button.children}
-            </Button>
+            </Button> */}
           </QueueAnim>
         </Element>
       );
     });
     return (
-      <div {...props} {...dataSource.wrapper}>
+      <div {...props} {...dataSource.wrapper} style={{height:700}}>
         <TweenOneGroup
           key="bannerGroup"
           enter={{ opacity: 0, type: 'from' }}
@@ -77,7 +77,7 @@ class Banner extends React.PureComponent {
           style={{ bottom:80 }}
           key="icon"
         >
-          <Icon type="down" />
+          {/* <Icon type="down" /> */}
         </TweenOne>
       </div>
     );

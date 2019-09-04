@@ -31,6 +31,14 @@ export const Nav30DataSource = {
           children: [{ children: 'Vaccinations', name: 'text' }],
         },
       },
+      // {
+      //   name: 'Recommondations',
+      //   className: 'header3-item',
+      //   children: {
+      //     href: '#',
+      //     children: [{ children: 'Recommondations', name: 'text' }],
+      //   },
+      // },
       {
         name: 'AboutUs',
         className: 'header3-item',
@@ -47,22 +55,22 @@ export const Banner10DataSource = {
   wrapper: { className: 'banner1' },
   BannerAnim: {
     children: [
-      {
-        name: 'elem0',
-        BannerElement: { className: 'banner-user-elem' },
-        textWrapper: { className: 'banner1-text-wrapper' },
-        bg: { className: 'bg bg0' },
-        title: {
-          className: 'banner1-title',
-          children:
-            '',
-        },
-        content: {
-          className: 'banner1-content',
-          children: '',
-        },
-        button: { className: 'banner1-button', children: 'Learn More' },
-      },
+      // {
+      //   name: 'elem0',
+      //   BannerElement: { className: 'banner-user-elem' },
+      //   textWrapper: { className: 'banner1-text-wrapper' },
+      //   bg: { className: 'bg bg0' },
+      //   title: {
+      //     className: 'banner1-title',
+      //     children:
+      //       '',
+      //   },
+      //   content: {
+      //     className: 'banner1-content',
+      //     children: '',
+      //   },
+      //   button: { className: 'banner1-button', children: 'Learn More' },
+      // },
       {
         name: 'elem1',
         BannerElement: { className: 'banner-user-elem' },
@@ -98,6 +106,52 @@ export const Banner10DataSource = {
     ],
   },
 };
+export const Banner2DataSource = {
+  wrapper: { className: 'banner1' },
+  BannerAnim: {
+    children: [
+      {
+        name: 'elem0',
+        BannerElement: { className: 'banner-user-elem' },
+        textWrapper: { className: 'banner1-text-wrapper' },
+        bg: { className: 'bg bg3' },
+        title: {
+          className: 'banner1-title',
+          children:
+            '',
+        },
+        content: {
+          className: 'banner1-content',
+          children: '',
+        },
+        button: { className: 'banner1-button', children: '' },
+      },
+    ]
+  }
+} 
+export const Banner3DataSource = {
+  wrapper: { className: 'banner1' },
+  BannerAnim: {
+    children: [
+      {
+        name: 'elem0',
+        BannerElement: { className: 'banner-user-elem' },
+        textWrapper: { className: 'banner1-text-wrapper' },
+        bg: { className: 'bg bg4' },
+        title: {
+          className: 'banner1-title',
+          children:
+            '',
+        },
+        content: {
+          className: 'banner1-content',
+          children: '',
+        },
+        button: { className: 'banner1-button', children: '' },
+      },
+    ]
+  }
+} 
 export const Content30DataSource = {
   wrapper: { className: 'home-page-wrapper content3-wrapper' },
   page: { className: 'home-page content3' },
@@ -113,7 +167,7 @@ export const Content30DataSource = {
       {
         name: 'content',
         className: 'title-content',
-        children: 'based on reliable articles and data',
+        children: 'based on reliable report and data',
       },
     ],
   },

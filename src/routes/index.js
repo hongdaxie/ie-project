@@ -1,7 +1,7 @@
 import{
     Home,
     Vaccinations,
-    // Recommondations,
+    Recommondations,
     AboutUs,
     NotFound
 } from '../views'
@@ -20,12 +20,12 @@ export const mainRoutes = [
         title : "Vaccinations",
         isNav : true,
     },
-    // {
-    //     pathname: "/Recommondations",
-    //     component: Recommondations,
-    //     title : "Recommondations",
-    //     isNav : true,
-    // },
+    {
+        pathname: "/Recommondations",
+        component: Recommondations,
+        title : "Recommondations",
+        isNav : true,
+    },
     {
         pathname: "/AboutUs",
         component: AboutUs,
