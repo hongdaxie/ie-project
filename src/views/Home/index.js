@@ -66,7 +66,8 @@ export default class Home extends Component {
           series: [
               {type: 'bar'},
               {type: 'bar'},
-              {type: 'bar'}
+              {type: 'bar'},
+              // {name: "Number of cases"}
           ]
       };
         this.fluChart.setOption(option)

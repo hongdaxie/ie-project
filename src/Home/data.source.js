@@ -31,14 +31,14 @@ export const Nav30DataSource = {
           children: [{ children: 'Vaccinations', name: 'text' }],
         },
       },
-      // {
-      //   name: 'Recommondations',
-      //   className: 'header3-item',
-      //   children: {
-      //     href: '#',
-      //     children: [{ children: 'Recommondations', name: 'text' }],
-      //   },
-      // },
+      {
+        name: 'Recommondations',
+        className: 'header3-item',
+        children: {
+          href: '#',
+          children: [{ children: 'Recommondations', name: 'text' }],
+        },
+      },
       {
         name: 'AboutUs',
         className: 'header3-item',
