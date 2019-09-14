@@ -40,11 +40,11 @@ export const Nav30DataSource = {
         },
       },
       {
-        name: 'AboutUs',
+        name: 'Quiz',
         className: 'header3-item',
         children: {
           href: '#',
-          children: [{ children: 'AboutUs', name: 'text' }],
+          children: [{ children: 'Quiz', name: 'text' }],
         },
       },
     ],
@@ -373,7 +373,7 @@ export const Footer00DataSource = {
       {
         name: 'block0',
         xs: 24,
-        md: 6,
+        md: 8,
         className: 'block',
         title: {
           className: 'logo',
@@ -396,7 +396,7 @@ export const Footer00DataSource = {
       {
         name: 'block1',
         xs: 24,
-        md: 6,
+        md: 4,
         className: 'block',
         title: { children: 'Home' },
         childWrapper: {
@@ -409,7 +409,7 @@ export const Footer00DataSource = {
       {
         name: 'block2',
         xs: 24,
-        md: 6,
+        md: 4,
         className: 'block',
         title: { children: 'Flu Vaccination' },
         childWrapper: {
@@ -421,12 +421,24 @@ export const Footer00DataSource = {
       {
         name: 'block3',
         xs: 24,
-        md: 6,
+        md: 4,
         className: 'block',
-        title: { children: 'About Us' },
+        title: { children: 'Recommondations' },
         childWrapper: {
           children: [
-            { href: '/aboutus', name: 'aboutus', children: 'Contact us' },
+            { href: '/Recommondations', name: 'Recommondations', children: 'Recommondations' },
+          ],
+        },
+      },
+      {
+        name: 'block4',
+        xs: 24,
+        md: 4,
+        className: 'block',
+        title: { children: 'Quiz' },
+        childWrapper: {
+          children: [
+            { href: '/Quiz', name: 'Quiz', children: 'Quiz' },
           ],
         },
       },

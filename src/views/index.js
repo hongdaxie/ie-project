@@ -19,8 +19,8 @@ const Recommondations = Loadable({
     loading: Loading
 })
 
-const AboutUs = Loadable({
-    loader: ()=> import('./AboutUs'),
+const Quiz = Loadable({
+    loader: ()=> import('./Quiz'),
     loading: Loading
 })
 
@@ -33,6 +33,6 @@ export{
     Home,
     Vaccinations,
     Recommondations,
-    AboutUs,
+    Quiz,
     NotFound
 }

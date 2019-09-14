@@ -25,7 +25,7 @@ class Banner extends React.PureComponent {
           <BgElement key="bg" {...bg} />
           <QueueAnim
             type={['bottom', 'top']}
-            delay={200}
+            delay={10}
             key="text"
             {...textWrapper}
           >
@@ -53,7 +53,7 @@ class Banner extends React.PureComponent {
       );
     });
     return (
-      <div {...props} {...dataSource.wrapper} style={{height:650}}>
+      <div {...props} {...dataSource.wrapper} style={{height:600}}>
         <TweenOneGroup
           key="bannerGroup"
           enter={{ opacity: 0, type: 'from' }}

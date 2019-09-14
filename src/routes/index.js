@@ -2,7 +2,7 @@ import{
     Home,
     Vaccinations,
     Recommondations,
-    AboutUs,
+    Quiz,
     NotFound
 } from '../views'
 
@@ -27,9 +27,9 @@ export const mainRoutes = [
         isNav : true,
     },
     {
-        pathname: "/AboutUs",
-        component: AboutUs,
-        title : "AboutUs",
+        pathname: "/Quiz",
+        component: Quiz,
+        title : "Quiz",
         isNav : true,
     },
     {
