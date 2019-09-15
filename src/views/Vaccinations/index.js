@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import { Input, Col ,Row, Card, Icon, Spin, List,Tag, message} from 'antd';
-import { getHospitalsBySuburb, getHospitalImageURL } from '../../requests'
+import { Input, Col ,Row, Card, Icon, Spin, List,Tag, message, Modal, AutoComplete} from 'antd';
+import { getHospitalsBySuburb, getSuburbList } from '../../requests'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faMapMarked} from '@fortawesome/free-solid-svg-icons'
+import GoogleMap from './GoogleMap'
+import './index.css'
 
 
 const { Search } = Input;
@@ -11,60 +15,98 @@ export default class Vaccination extends Component {
     constructor(){
         super()
         this.state={
-            isSearching: false
+            isSearching: false,
+            value: '',
+            suburbList: []
         }
     }
 
 
-    searchHandle = (value, event) => {
+    searchHandle = (value) => {
         this.setState({
             isSearching: true
-        })
-
-        let respData
-        getHospitalsBySuburb(value)
+        })  
+        // console.log(value)
+        if(value.trim().length>0){
+            getHospitalsBySuburb(value)
             .then(resp => {
-                respData = resp.data
-            })
-            .then(()=>{
-                const data = respData.map(item => {
-                    let imageURL = "1"
-                    getHospitalImageURL(item.name)
-                        .then(imageResp =>{
-                            // console.log(imageResp)
-                            imageURL = imageResp.data.items[0].link
-                        }
-                        )
-                        .catch(err => {
-                            message.error("Goolge search error" + err)
-                        })
-                        .finally(()=> {
-                            item.image = imageURL
-                        })
-                    console.log(item)
+                const respData = resp.data
+                respData.map( item => {
+                    item.isMapVisible = false
                     return item
                 })
-                
                 this.setState({
-                    dataSource: data
+                    dataSource: respData
                 })
                 console.log(this.state.dataSource)
             })
             .catch(err => {
             // deal with error
+                message.error(err)
             })
             .finally(() => {
             this.setState({
                 isSearching: false
                 })
-            })
-
-            
+            })     
+        }else{
+            message.error("Please enter some words in input area!")
+            this.setState({
+                isSearching: false
+                }) 
+        }
+        
     }
 
-    // createColumns = (columesKeys) => {
-    //     console.log(columesKeys)
-    // }
+    searchSuggestion = () => {
+        getSuburbList()
+            .then(resp => {
+                const respData = resp.data
+                console.log(respData)
+                this.setState({
+                    suburbList : respData
+                })
+            })
+            .catch(err => {
+            // deal with error
+                message.error(err)
+            })
+            .finally(() => {
+                // console.log()
+            })     
+    }
+
+    componentDidMount(){
+        this.searchSuggestion()
+        console.log(this.state.suburbList)
+    }
+
+
+    handleMapClick = (i) => {
+        const newDataSource = this.state.dataSource
+        newDataSource[i].isMapVisible = true
+        this.setState({
+            dataSource: newDataSource
+        })
+        // console.log(this.state.dataSource)
+    }
+
+    handleModalOk = (i) => {
+        const newDataSource = this.state.dataSource
+        newDataSource[i].isMapVisible = false
+        this.setState({
+            dataSource: newDataSource
+        })
+        // console.log(this.state.dataSource)
+    }
+
+    handleModalCancel = (i) => {
+        const newDataSource = this.state.dataSource
+        newDataSource[i].isMapVisible = false
+        this.setState({
+            dataSource: newDataSource
+        })
+    }
 
     render() {
         return (
@@ -75,19 +117,31 @@ export default class Vaccination extends Component {
                     <Card
                         bordered = {false}
                         style = {{marginTop:'8px'}}
-                        title = "Find the near hospitals or clinic!"
+                        title = "Find a clinic or hospital!"
                     >
                     <Row >
+                    <AutoComplete 
+                        style={{width:"100%"}}
+                        size="large"
+                        dataSource={this.state.suburbList}
+                        filterOption={(inputValue, option) =>
+                            option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+                          }
+                        // onSearch={this.searchHandle} 
+                        // onSelect={onSelect}
+                    >
                     <Search 
                         prefix={<Icon type="search" />}
-                        placeholder="input search text" 
+                        placeholder="input region name (like kingston, monash)" 
                         size="large"
                         onSearch={this.searchHandle} 
+                        
                         enterButton  = "Search"
                     />
+                    </AutoComplete>
                     {/* <div style={{align:'left', border:'1px solid #A5ACB2'}}>aaaaa</div>  */}
                     </Row> 
-                    
+
                     </Card>  
                 </Col>
 
@@ -96,31 +150,49 @@ export default class Vaccination extends Component {
                     grid={{column: 1}}
                     dataSource = {this.state.dataSource}
                     renderItem = {
-                        item => (
+                        (item,i) => (
                             <List.Item>
                                 <Card 
                                     hoverable
                                 >
-                                {/* <Meta 
-                                    style={{textAlign: 'center',margin:'8px'}}
-                                    title = {item.name}   
-                                /> */}
-                                <Card.Grid  
-                                    style={{width:'25%', margin:'8px', border:'0px'}}
-                                    hoverable="false"
+                                <Row gutter={16}>
+                                <Col
+                                    span = {6}
                                 >
-                                    {item.image?"111":"222"}
-                                <img src={item.image}  alt={item.name} />
-                                </Card.Grid>
-                                <p style={{margin:'8px', fontSize:'16px', fontWeight:'bold'}}>
-                                {item.name}
-                                </p>
-                                <p>
-                                    <Tag color={item.type === "private"?"#87d068":"#108ee9"}>{item.type}</Tag>
-                                </p>
-                                <p style={{margin:'8px'}}>
-                                    {item.streetNumber} {item.roadName} {item.roadType}, {item.suburb} {item.postcode}, {item.state}
-                                </p>
+                                    <Card
+                                        cover={<img src={item.image}  alt={item.name} style={{overflow:"hidden"}} />}
+                                        bordered = {false}
+                                    >
+                                    </Card>
+                                </Col>
+                                 <Col
+                                    span = {14}
+                                >
+                                    <p style={{marginBottom:'8px', fontSize:'16px', fontWeight:'bold'}}>
+                                    {item.name} 
+                                    </p>
+                                    <p>
+                                        <Tag color={item.type === "private"?"#87d068":"#108ee9"}>{item.type}</Tag>
+                                    </p>
+                                    <p style={{marginTop:'8px'}}>
+                                        {item.streetNumber} {item.roadName} {item.roadType}, {item.suburb} {item.postcode}, {item.state}
+                                    </p>
+                                </Col>
+                                <Col
+                                    span = {4}
+                                >
+                                    <div className={"mapIcon"} onClick={this.handleMapClick.bind(this, i)}><FontAwesomeIcon  icon={faMapMarked}  /> Map </div>
+                                </Col>
+                                </Row>
+                                <Modal
+                                    visible={this.state.dataSource[i].isMapVisible}
+                                    title={item.name}
+                                    onOk={this.handleModalOk.bind(this, i)}
+                                    onCancel={this.handleModalCancel.bind(this, i)}
+                                    footer={null}
+                                >
+                                    <GoogleMap item = {item} />
+                                </Modal>
                                 </Card>
                             </List.Item>
                         )
@@ -128,6 +200,7 @@ export default class Vaccination extends Component {
                 >
                 </List>
                 </Col>
+                
             </div>
             </Spin>
         )
