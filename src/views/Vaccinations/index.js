@@ -38,7 +38,7 @@ export default class Vaccination extends Component {
                 this.setState({
                     dataSource: respData
                 })
-                console.log(this.state.dataSource)
+                // console.log(this.state.dataSource)
             })
             .catch(err => {
             // deal with error
@@ -61,8 +61,11 @@ export default class Vaccination extends Component {
     searchSuggestion = () => {
         getSuburbList()
             .then(resp => {
-                const respData = resp.data
-                console.log(respData)
+                let respData = resp.data
+                // console.log(respData)
+                respData = respData.map((item) => {
+                    return item.trim()
+                })
                 this.setState({
                     suburbList : respData
                 })
@@ -88,8 +91,9 @@ export default class Vaccination extends Component {
                 this.setState({
                     dataSource: respData
                 })
+                // console.log(this.state.dataSource)
             })
-        console.log(this.state.dataSource)
+        
     }
 
 
@@ -140,7 +144,7 @@ export default class Vaccination extends Component {
                             option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
                           }
                         // onSearch={this.searchHandle} 
-                        // onSelect={onSelect}
+                        // onSelect={this.searchHandle}
                     >
                     <Search 
                         prefix={<Icon type="search" />}
@@ -184,7 +188,7 @@ export default class Vaccination extends Component {
                                     {item.name} 
                                     </p>
                                     <p>
-                                        <Tag color={item.type === "private"?"#87d068":"#108ee9"}>{item.type}</Tag>
+                                        <Tag color={item.type === "PRIVATE"?"#87d068":"#108ee9"}>{item.type}</Tag>
                                     </p>
                                     <p style={{marginTop:'8px'}}>
                                         {item.streetNumber} {item.roadName} {item.roadType}, {item.suburb} {item.postcode}, {item.state}

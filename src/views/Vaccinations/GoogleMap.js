@@ -5,6 +5,11 @@ import {faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
 
 const MapMarker = () => <FontAwesomeIcon  icon={faMapMarkerAlt} style={{fontSize:"24px", color:"red"}} />
 
+
+  
+  
+
+
 export default class GoogleMap extends Component {
     constructor(){
         super()
@@ -31,6 +36,23 @@ export default class GoogleMap extends Component {
         })
     }
 
+    bindResizeListener = (map, maps, bounds) => {
+        maps.event.addDomListenerOnce(map, 'idle', () => {
+            maps.event.addDomListener(window, 'resize', () => {
+            map.fitBounds(bounds);
+            });
+        });
+        };
+
+    apiIsLoaded = (map, maps) => {
+        if (map) {
+          const bounds = new maps.LatLngBounds();
+          map.fitBounds(bounds);
+          this.bindResizeListener(map, maps, bounds);
+        }
+      };
+    
+
     //   renderMarkers = (map, maps) => {
     //     let marker = new maps.Marker({
     //       position: this.state.center,
@@ -46,9 +68,17 @@ export default class GoogleMap extends Component {
             <div style={{ height: '50vh', width: '90%', margin:"auto", marginBottom:"24px"}}>
                 <GoogleMapReact
                 bootstrapURLKeys={{ key: "AIzaSyC73kt0rEvtd2U-QKDGrEYvbV1S-dlX0EI"}}
-                defaultCenter={this.state.center}
-                defaultZoom={this.state.zoom}
+                defaultCenter= {{
+                    lat : -37.8136,
+                    lng : 144.9631
+                }}
+                center = {this.state.center}
+                // defaultZoom=
+                zoom = {this.state.zoom}
+
+                yesIWantToUseGoogleMapApiInternals
                 // onGoogleApiLoaded={({map, maps}) => this.renderMarkers(map, maps)}
+                // onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
                 >
                 <MapMarker
                     lat={this.props.item.latitude}
