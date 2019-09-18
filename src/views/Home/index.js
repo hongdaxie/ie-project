@@ -1,25 +1,24 @@
 import React, { Component, createRef } from 'react'
 import Banner from '../../Home/Banner1';
-// import Content3 from '../../Home/Content3';
+import Feature from '../../Home/Feature0';
 import { enquireScreen } from 'enquire-js';
 import echarts from "echarts"
 import {  
     Banner10DataSource,
-    // Content30DataSource,
-    // Banner2DataSource,
-    // Banner3DataSource
+    Feature00DataSource,
 } from '../../Home/data.source';
 import{
   Row,
   Col,
-  Card,Collapse,Typography
+  Card,Collapse,Typography, Carousel
 } from 'antd'
-import rightSiderImg1 from './homePageRightSide1.jpg'
 import rightSiderImg2 from './homePageRightSide2.jpg'
 import rightSiderImg3 from './homePageRightSide3.jpg'
 import rightSiderImg4 from './homePageRightSide4.jpg'
 import vaccine1 from './vaccine1.jpg'
 import vaccine2 from './vaccine2.jpg'
+import './index.css'
+
 
 const {Paragraph} = Typography
 const { Panel } = Collapse;
@@ -71,70 +70,70 @@ export default class Home extends Component {
         this.fluAmountChart = createRef()
       }
 
-      initFluChart = () => {
-        this.fluChart = echarts.init(this.fluAmountChart.current)
-        const option = {
-          title:{
-            text: "Influenza cases for Victoria"
-          },
-          legend: {},
-          tooltip: {},
-          dataset: {
-              dimensions:['ageGrop','2017','2018','2019'],
-              source: chartData
-          },
-          xAxis: {type: 'category'},
-          yAxis: {},
-          // Declare several bar series, each will be mapped
-          // to a column of dataset.source by default.
-          series: [
-              {type: 'bar'},
-              {type: 'bar'},
-              // {name: "Number of cases"}
-          ]
-      };
-        this.fluChart.setOption(option)
-      }  
+      // initFluChart = () => {
+      //   this.fluChart = echarts.init(this.fluAmountChart.current)
+      //   const option = {
+      //     title:{
+      //       text: "Influenza cases for Victoria"
+      //     },
+      //     legend: {},
+      //     tooltip: {},
+      //     dataset: {
+      //         dimensions:['ageGrop','2017','2018','2019'],
+      //         source: chartData
+      //     },
+      //     xAxis: {type: 'category'},
+      //     yAxis: {},
+      //     // Declare several bar series, each will be mapped
+      //     // to a column of dataset.source by default.
+      //     series: [
+      //         {type: 'bar'},
+      //         {type: 'bar'},
+      //         // {name: "Number of cases"}
+      //     ]
+      // };
+      //   this.fluChart.setOption(option)
+      // }  
 
 
-      initRecentFluChart = () => {
-        this.recentFluChart = echarts.init(document.getElementById("recentFluChart"))
-        const option1 = {
-            title: {
-                text: 'Death by Influenza'
-            },
-            legend: {},
-            tooltip: {},
-            dataset: {
-              dimensions:['year','age0-4','age5-64','age65+'],
-              source: recentChartData
-          },
-            xAxis: {
-                type: 'category',
-                // boundaryGap: true,
-                // data: recentChartData.map(item => item.date),
-                // axisTick: {
-                //     alignWithLabel: true
-                // }
-            },
-            yAxis: {
-                // type: 'value'
-            },
-            series: [
-              {
-                // data: recentChartData.map(item => item.value),
-                // type: 'line',
-                // // areaStyle: {},
-                // name: "Number of cases",
-                // itemStyle : { normal: {label : {show: true}}}
-              type:'bar'
-              },
-              {type:'bar'},
-              {type:"bar"}
-            ],
-        }
-        this.recentFluChart.setOption(option1)
-      }
+      // initRecentFluChart = () => {
+      //   this.recentFluChart = echarts.init(document.getElementById("recentFluChart"))
+      //   const option1 = {
+      //       title: {
+      //           text: 'Death by Influenza'
+      //       },
+      //       legend: {},
+      //       tooltip: {},
+      //       dataset: {
+      //         dimensions:['year','age0-4','age5-64','age65+'],
+      //         source: recentChartData
+      //     },
+      //       xAxis: {
+      //           type: 'category',
+      //           // boundaryGap: true,
+      //           // data: recentChartData.map(item => item.date),
+      //           // axisTick: {
+      //           //     alignWithLabel: true
+      //           // }
+      //       },
+      //       yAxis: {
+      //           // type: 'value'
+      //       },
+      //       series: [
+      //         {
+      //           // data: recentChartData.map(item => item.value),
+      //           // type: 'line',
+      //           // // areaStyle: {},
+      //           // name: "Number of cases",
+      //           // itemStyle : { normal: {label : {show: true}}}
+      //         type:'bar'
+      //         },
+      //         {type:'bar'},
+      //         {type:"bar"}
+      //       ],
+      //   }
+      //   this.recentFluChart.setOption(option1)
+      // }
 
     componentDidMount() {
         enquireScreen((b) => {
@@ -148,33 +147,44 @@ export default class Home extends Component {
           });
         }, 500);
       }
-      this.initFluChart()
-      this.initRecentFluChart()
+      // this.initFluChart()
+      // this.initRecentFluChart()
     }
 
     render() {
         return (
             <div>
               <Row>
-                <Col md={{span:24}} lg={{span:16, offset:1}}>
-                <Banner
+                <Col span= {24}>
+                {/* <Banner
                     id="Banner1_0"
                     key="Banner1_0"
                     dataSource={Banner10DataSource}
                     isMobile={this.state.isMobile}
-                />
+                /> */}
+                <Carousel autoplay>
+                  <div className="bg1">
+                    &nbsp;	
+                  </div>
+                  <div className="bg2">
+                    &nbsp;	
+                  </div>
+                </Carousel>
                 </Col> 
-
-                <Col md={24} lg={{span:6}}>
-                <Card 
-                    style={{height:"600px"}}
-                    cover={<img  src={rightSiderImg2} alt="example" style={{height:"580px"}} />}
-                  >
-                  </Card>
-                </Col>
-              </Row> 
-              <Row style={{marginTop:'8px'}}>
-                <Col md={24} lg={{span:16, offset:1}}>
+              </Row>
+              <Row>
+                  <Col>
+                      <Feature
+                        id="Feature"
+                        key="Feature"
+                        dataSource={Feature00DataSource}
+                        isMobile={this.state.isMobile}
+                      >
+                      </Feature>
+                  </Col>
+              </Row>
+              <Row>
+                {/* <Col md={24} lg={{span:16, offset:1}}>
                   <Card 
                       title="" 
                       bordered={true} 
@@ -183,17 +193,31 @@ export default class Home extends Component {
                       <div ref={this.fluAmountChart} style={{height:'590px'}}/>
                       
                   </Card>
+                </Col> */}
+
+                <Col md={24} lg={{span:8}} >
+                <Card 
+                    style={{height:"590px", marginLeft:'48px'}}
+                    cover={<img  src={rightSiderImg2} alt="example" style={{height:"580px"}} />}
+                  >
+                  </Card>
                 </Col>
-                <Col md ={24} lg={6} >
+                <Col md ={24} lg={{span:8}} >
                   <Card 
-                      style={{height:"590px"}}
+                      style={{height:"590px", marginLeft:'48px'}}
                       cover={<img src={rightSiderImg3} alt="example" style={{height:"590px"}} />}
                     >
                   </Card>
                 </Col>
+                <Col md ={24} lg={{span:8}} >
+                  <Card 
+                      style={{height:"590px", marginLeft:'48px', marginRight:'48px'}}
+                      cover={<img src={rightSiderImg4} alt="example" style={{height:"590px"}} />}
+                    >
+                  </Card>
+                </Col>
               </Row>
-              <Row style={{marginTop:'8px'}}>
-                <Col md={24} lg={{span:16, offset:1}}>
+                {/* <Col md={24} lg={{span:16, offset:1}}>
                   <Card 
                       title="" 
                       bordered={true}  
@@ -201,15 +225,9 @@ export default class Home extends Component {
                   >
                       <div id="recentFluChart" style={{height:'590px'}}/>
                   </Card>
-                </Col>
-                <Col md ={24} lg={6} >
-                  <Card 
-                      style={{height:"590px"}}
-                      cover={<img src={rightSiderImg4} alt="example" style={{height:"590px"}} />}
-                    >
-                  </Card>
-                </Col>
-              </Row>
+                </Col> */}
+                
+
               
                 <Col md={24} lg={{span:22, offset:1}}>
                 <div style={{marginTop:"8px"}}>

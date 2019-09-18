@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Button, Icon } from 'antd';
+import { Button, Icon, Carousel } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne, { TweenOneGroup } from 'rc-tween-one';
 import BannerAnim, { Element } from 'rc-banner-anim';
@@ -25,7 +25,7 @@ class Banner extends React.PureComponent {
           <BgElement key="bg" {...bg} />
           <QueueAnim
             type={['bottom', 'top']}
-            delay={10}
+            delay={2}
             key="text"
             {...textWrapper}
           >

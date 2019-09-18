@@ -3,6 +3,7 @@ import{
     Vaccinations,
     Recommondations,
     Quiz,
+    Travel,
     NotFound
 } from '../views'
 
@@ -30,6 +31,12 @@ export const mainRoutes = [
         pathname: "/Quiz",
         component: Quiz,
         title : "Quiz",
+        isNav : true,
+    },
+    {
+        pathname: "/Travel",
+        component: Travel,
+        title : "Travel",
         isNav : true,
     },
     {

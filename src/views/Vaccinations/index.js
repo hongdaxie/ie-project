@@ -78,6 +78,17 @@ export default class Vaccination extends Component {
 
     componentDidMount(){
         this.searchSuggestion()
+        getHospitalsBySuburb("KINGSTON")
+            .then(resp => {
+                const respData = resp.data
+                respData.map( item => {
+                    item.isMapVisible = false
+                    return item
+                })
+                this.setState({
+                    dataSource: respData
+                })
+            })
         console.log(this.state.suburbList)
     }
 
@@ -113,7 +124,7 @@ export default class Vaccination extends Component {
             <Spin spinning= {this.state.isSearching}>
             <div>
                 
-                <Col span={12} offset={6}>
+                <Col lg={{span:12, offset:6}} md = {{span: 22, offset:1}} >
                     <Card
                         bordered = {false}
                         style = {{marginTop:'8px'}}
@@ -123,6 +134,7 @@ export default class Vaccination extends Component {
                     <AutoComplete 
                         style={{width:"100%"}}
                         size="large"
+                        defaultValue="KINGSTON"
                         dataSource={this.state.suburbList}
                         filterOption={(inputValue, option) =>
                             option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
@@ -135,7 +147,7 @@ export default class Vaccination extends Component {
                         placeholder="input region name (like kingston, monash)" 
                         size="large"
                         onSearch={this.searchHandle} 
-                        
+                        // defaultValue= "KINGSTON"
                         enterButton  = "Search"
                     />
                     </AutoComplete>

@@ -24,6 +24,11 @@ const Quiz = Loadable({
     loading: Loading
 })
 
+const Travel = Loadable({
+    loader: ()=> import('./Travel'),
+    loading: Loading
+})
+
 const NotFound = Loadable({
     loader: () => import('./NotFound'),
     loading : Loading
@@ -34,5 +39,6 @@ export{
     Vaccinations,
     Recommondations,
     Quiz,
+    Travel,
     NotFound
 }

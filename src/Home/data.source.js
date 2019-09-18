@@ -4,6 +4,10 @@ import teamMember1 from './imgs/teamMember1.jpeg'
 import teamMember2 from './imgs/teamMember2.jpeg'
 import teamMember3 from './imgs/teamMember3.jpeg'
 import teamMember4 from './imgs/teamMember4.jpeg'
+import search from './imgs/search.png'
+import data from './imgs/data.png'
+import travel from './imgs/travel.png'
+
 export const Nav30DataSource = {
   wrapper: { className: 'header3 home-page-wrapper' },
   page: { className: 'home-page jznhvg194k-editor_css' },
@@ -28,7 +32,7 @@ export const Nav30DataSource = {
         className: 'header3-item',
         children: {
           href: '#',
-          children: [{ children: 'Vaccinations', name: 'text' }],
+          children: [{ children: 'Hospitals', name: 'text' }],
         },
       },
       {
@@ -36,17 +40,25 @@ export const Nav30DataSource = {
         className: 'header3-item',
         children: {
           href: '#',
-          children: [{ children: 'Recommondations', name: 'text' }],
+          children: [{ children: 'Data', name: 'text' }],
         },
       },
       {
-        name: 'Quiz',
+        name: 'Travel',
         className: 'header3-item',
         children: {
           href: '#',
-          children: [{ children: 'Quiz', name: 'text' }],
+          children: [{ children: 'Travel', name: 'text' }],
         },
       },
+      // {
+      //   name: 'Quiz',
+      //   className: 'header3-item',
+      //   children: {
+      //     href: '#',
+      //     children: [{ children: 'Quiz', name: 'text' }],
+      //   },
+      // },
     ],
   },
   mobileMenu: { className: 'header3-mobile-menu' },
@@ -237,6 +249,104 @@ export const Content30DataSource = {
     ],
   },
 };
+export const Feature00DataSource = {
+  wrapper: { className: 'home-page-wrapper content0-wrapper' },
+  page: { className: 'home-page content0' },
+  OverPack: { playScale: 0.3, className: '' },
+  titleWrapper: {
+    className: 'title-wrapper',
+    children: [{ name: 'title', children: 'Our Features' }],
+  },
+  childWrapper: {
+    className: 'content0-block-wrapper',
+    children: [
+      {
+        name: 'block0',
+        className: 'content0-block',
+        md: 8,
+        xs: 24,
+        children: {
+          className: 'content0-block-item',
+          title: 'Hospitial search',
+          target: 'Vaccinations',
+          children: [
+            {
+              name: 'image',
+              className: 'content0-block-icon',
+              children:
+                // 'https://zos.alipayobjects.com/rmsportal/WBnVOjtIlGWbzyQivuyq.png',
+                search
+            },
+            {
+              name: 'title',
+              className: 'content0-block-title',
+              children: '',
+            },
+            { name: 'content', children: 'Search the hospitals in your region!' },
+          ],
+        },
+      },
+      {
+        name: 'block1',
+        className: 'content0-block',
+        md: 8,
+        xs: 24,
+        children: {
+          className: 'content0-block-item',
+          title: 'Travel suggestion',
+          target: 'Travel',
+          children: [
+            {
+              name: 'image',
+              className: 'content0-block-icon',
+              children:
+                // 'https://zos.alipayobjects.com/rmsportal/YPMsLQuCEXtuEkmXTTdk.png',
+                travel
+            },
+            {
+              name: 'title',
+              className: 'content0-block-title',
+              children: '',
+            },
+            {
+              name: 'content',
+              children: 'Get shot suggestions before travel!',
+            },
+          ],
+        },
+      },
+      {
+        name: 'block2',
+        className: 'content0-block',
+        md: 8,
+        xs: 24,
+        children: {
+          className: 'content0-block-item',
+          title: 'Data analytics',
+          target:'Recommondations',
+          children: [
+            {
+              name: 'image',
+              className: 'content0-block-icon',
+              children:
+                // 'https://zos.alipayobjects.com/rmsportal/EkXWVvAaFJKCzhMmQYiX.png',
+                data
+            },
+            {
+              name: 'title',
+              className: 'content0-block-title',
+              children: '',
+            },
+            {
+              name: 'content',
+              children: 'See the influenza tendency! ',
+            },
+          ],
+        },
+      },
+    ],
+  },
+};
 export const Teams10DataSource = {
   wrapper: { className: 'home-page-wrapper teams1-wrapper' },
   page: { className: 'home-page teams1' },
@@ -373,7 +483,7 @@ export const Footer00DataSource = {
       {
         name: 'block0',
         xs: 24,
-        md: 8,
+        md: 4,
         className: 'block',
         title: {
           className: 'logo',
@@ -411,10 +521,10 @@ export const Footer00DataSource = {
         xs: 24,
         md: 4,
         className: 'block',
-        title: { children: 'Flu Vaccination' },
+        title: { children: 'Hospitals' },
         childWrapper: {
           children: [
-            { name: 'info', href: '/Vaccinations', children: 'Info' },
+            { name: 'Hospitals', href: '/Vaccinations', children: 'Hospitals' },
           ],
         },
       },
@@ -423,10 +533,10 @@ export const Footer00DataSource = {
         xs: 24,
         md: 4,
         className: 'block',
-        title: { children: 'Recommondations' },
+        title: { children: 'Data' },
         childWrapper: {
           children: [
-            { href: '/Recommondations', name: 'Recommondations', children: 'Recommondations' },
+            { href: '/Recommondations', name: 'Data', children: 'Data' },
           ],
         },
       },
@@ -435,13 +545,25 @@ export const Footer00DataSource = {
         xs: 24,
         md: 4,
         className: 'block',
-        title: { children: 'Quiz' },
+        title: { children: 'Travel' },
         childWrapper: {
           children: [
-            { href: '/Quiz', name: 'Quiz', children: 'Quiz' },
+            { href: '/Travel', name: 'Travel', children: 'Travel' },
           ],
         },
       },
+      // {
+      //   name: 'block5',
+      //   xs: 24,
+      //   md: 4,
+      //   className: 'block',
+      //   title: { children: 'Quiz' },
+      //   childWrapper: {
+      //     children: [
+      //       { href: '/Quiz', name: 'Quiz', children: 'Quiz' },
+      //     ],
+      //   },
+      // },
     ],
   },
   copyrightWrapper: { className: 'copyright-wrapper' },
