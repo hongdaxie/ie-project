@@ -89,7 +89,7 @@ export default class Vaccination extends Component {
                     dataSource: respData
                 })
             })
-        console.log(this.state.suburbList)
+        console.log(this.state.dataSource)
     }
 
 

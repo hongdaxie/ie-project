@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Layout } from "antd";
+import { Layout, Col , Collapse, Typography} from "antd";
 import USA from "../../../src/Home/imgs/USA.jpeg";
 import Tick from "../../../src/Home/imgs/tick.png";
 import UK from "../../../src/Home/imgs/UK.jpeg";
@@ -7,6 +7,9 @@ import China from "../../../src/Home/imgs/china.png";
 import Thiland from "../../../src/Home/imgs/thiland.png";
 import Indonessia from "../../../src/Home/imgs/indonessia.jpeg";
 import NewsLand from "../../../src/Home/imgs/news-land.jpeg";
+
+const {Paragraph} = Typography
+const { Panel } = Collapse;
 
 export default class Travel extends Component {
     constructor(props) {
@@ -753,7 +756,28 @@ export default class Travel extends Component {
                 </div>
               </div>
              
-            </div>
+              </div>
+              <Col md={24} lg={{span:22, offset:1}}>
+                <div style={{marginTop:"8px"}}>
+                            <Collapse 
+                            // defaultActiveKey={['1']} 
+                            >
+                                <Panel header="Source" key="1">
+                                <div id="influenza">
+                                    <Paragraph>
+                                      <a href="https://www.who.int/" target="_blank">WHO(World Health Organization)</a>
+                                    </Paragraph>
+                                    <Paragraph>
+                                    <a href="https://www.cdc.gov" target="_blank">CDC(Centers for Disease Control and Prevention (US))</a>
+                                    </Paragraph>
+                                    <Paragraph>
+                                    <a href="https://www.health.gov.au/health-topics/immunisation" target="_blank">Australian Government</a>
+                                    </Paragraph> 
+                                </div>
+                                </Panel>
+                              </Collapse>
+                              </div>
+                              </Col>
                 </div>
               )}
             </div>
