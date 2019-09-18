@@ -23,3 +23,7 @@ export const getHospitalsBySuburb = (suburb) =>{
 export const getSuburbList = () => {
     return service.get(`/hospital/findAllSuburb`)
 }
+
+// export const findHospitalById = (id) => {
+//     return service.get(`/hospital/${id}`)
+// }

@@ -26,23 +26,6 @@ export default class GoogleMap extends Component {
     //     zoom: 13
     //   };
     
-    componentDidMount(){
-        this.setState({
-            center : {
-                lat : this.props.item.latitude,
-                lng : this.props.item.longitude
-            },
-            name : this.props.item.name
-        })
-    }
-
-    bindResizeListener = (map, maps, bounds) => {
-        maps.event.addDomListenerOnce(map, 'idle', () => {
-            maps.event.addDomListener(window, 'resize', () => {
-            map.fitBounds(bounds);
-            });
-        });
-        };
 
     apiIsLoaded = (map, maps) => {
         if (map) {
@@ -52,6 +35,13 @@ export default class GoogleMap extends Component {
         }
       };
     
+    bindResizeListener = (map, maps, bounds) => {
+    maps.event.addDomListenerOnce(map, 'idle', () => {
+        maps.event.addDomListener(window, 'resize', () => {
+        map.fitBounds(bounds);
+        });
+    });
+    };
 
     //   renderMarkers = (map, maps) => {
     //     let marker = new maps.Marker({
@@ -62,17 +52,20 @@ export default class GoogleMap extends Component {
     //   }
 
     render() {
-        // console.log(this.props)
+        
+        const{ latitude, longitude } = this.props.item
+        // console.log(latitude)
+        // console.log(longitude)
         return (
             // <div></div>
             <div style={{ height: '50vh', width: '90%', margin:"auto", marginBottom:"24px"}}>
                 <GoogleMapReact
                 bootstrapURLKeys={{ key: "AIzaSyC73kt0rEvtd2U-QKDGrEYvbV1S-dlX0EI"}}
-                defaultCenter= {{
-                    lat : -37.8136,
-                    lng : 144.9631
-                }}
-                center = {this.state.center}
+                // defaultCenter= {{
+                //     lat : -37.8136,
+                //     lng : 144.9631
+                // }}
+                center = {{lat:latitude, lng:longitude}}
                 // defaultZoom=
                 zoom = {this.state.zoom}
 
