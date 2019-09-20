@@ -282,7 +282,7 @@ export const Feature00DataSource = {
               className: 'content0-block-title',
               children: '',
             },
-            { name: 'content', children: 'Search the hospitals in your region!' },
+            { name: 'content', children: 'Where can i get vaccinated based on my location?' },
           ],
         },
       },
@@ -293,7 +293,7 @@ export const Feature00DataSource = {
         xs: 24,
         children: {
           className: 'content0-block-item',
-          title: 'Travel suggestion',
+          title: 'Travel shot suggestion',
           target: 'Travel',
           children: [
             {
@@ -310,7 +310,7 @@ export const Feature00DataSource = {
             },
             {
               name: 'content',
-              children: 'Get shot suggestions before travel!',
+              children: 'Get vaccine recommendation before your international journey!',
             },
           ],
         },
@@ -339,7 +339,7 @@ export const Feature00DataSource = {
             },
             {
               name: 'content',
-              children: 'See the influenza tendency! ',
+              children: 'Influenza count in victoria based on region,age and year.',
             },
           ],
         },
