@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router-dom"
-import {Layout,  Form, Icon, Input, Button, Card } from 'antd'
+import {Layout,  Form, Icon, Input, Button, Card, message } from 'antd'
 import { enquireScreen } from 'enquire-js';
 import '../../Home/less/antMotionStyle.less';
 import Nav from "../../Home/Nav3"
@@ -10,6 +10,7 @@ import {
   Footer00DataSource,
 } from '../../Home/data.source';
 import './index.css'
+import { connect } from 'react-redux'
 
 
 const { Content} = Layout
@@ -30,7 +31,8 @@ class Frame extends Component {
         this.state = {
           isMobile,
           show: !location.port,
-          isAdmin : true
+          isAdmin : true,
+          // isLogin : false
         };
       }
 
@@ -58,21 +60,25 @@ class Frame extends Component {
             this.setState({
               isAdmin : true
             })
+          }else{
+            message.error("Please enter right username and password!")
           }
         }
       });
     };
     
     render() {
-      // console.log(this.props)
+      // console.log(this.props.user)
       if(this.state.isAdmin){
         return (
           <Layout style={{minHeight:"100%"}}>
               <Nav
-                id="Nav3_0"
-                key="Nav3_0"
-                dataSource={Nav30DataSource}
-                isMobile={this.state.isMobile}
+                id = "Nav3_0"
+                key = "Nav3_0"
+                dataSource = {Nav30DataSource}
+                isMobile = {this.state.isMobile}
+                // isLogin = {this.props.isLogin}
+                nickname = {this.props.nickname}
               /> 
               <Layout>
                   <Content>                    
@@ -129,4 +135,10 @@ class Frame extends Component {
         
     }
 }
-export default withRouter(Form.create()(Frame))
+
+const mapStateToProps = state => ({
+
+  nickname: state.user.nickname,
+  // user : state.user
+})
+export default connect(mapStateToProps)(withRouter(Form.create()(Frame)))

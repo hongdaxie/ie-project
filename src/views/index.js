@@ -29,6 +29,31 @@ const Travel = Loadable({
     loading: Loading
 })
 
+const Login = Loadable({
+    loader: ()=> import('./Login'),
+    loading: Loading
+})
+
+const Register = Loadable({
+    loader: ()=> import('./Register'),
+    loading: Loading
+})
+
+const Account = Loadable({
+    loader: ()=> import('./Account'),
+    loading: Loading
+})
+
+const AddNewGrandParent = Loadable({
+    loader: ()=> import('./Account/AddNew'),
+    loading: Loading
+})
+
+const EditGrandParent = Loadable({
+    loader: ()=> import('./Account/Edit'),
+    loading: Loading
+})
+
 const NotFound = Loadable({
     loader: () => import('./NotFound'),
     loading : Loading
@@ -40,5 +65,10 @@ export{
     Recommondations,
     Quiz,
     Travel,
-    NotFound
+    Login,
+    Register,
+    Account,
+    NotFound,
+    AddNewGrandParent,
+    EditGrandParent
 }

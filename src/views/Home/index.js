@@ -1,10 +1,10 @@
 import React, { Component, createRef } from 'react'
-import Banner from '../../Home/Banner1';
+// import Banner from '../../Home/Banner1';
 import Feature from '../../Home/Feature0';
 import { enquireScreen } from 'enquire-js';
 import echarts from "echarts"
 import {  
-    Banner10DataSource,
+    // Banner10DataSource,
     Feature00DataSource,
 } from '../../Home/data.source';
 import{
@@ -12,14 +12,14 @@ import{
   Col,
   Card,Collapse,Typography, Carousel
 } from 'antd'
-import rightSiderImg2 from './homePageRightSide2.jpg'
-import rightSiderImg3 from './homePageRightSide3.jpg'
-import rightSiderImg4 from './homePageRightSide4.jpg'
+import rightSiderImg2 from './homePageRightSide1_meitu_1.jpg'
+import rightSiderImg3 from './homePageRightSide2_meitu_1.jpg'
+import rightSiderImg4 from './homePageRightSide3_meitu_2.jpg'
 import vaccine1 from './vaccine1.jpg'
 import vaccine2 from './vaccine2.jpg'
 import './index.css'
 
-
+const { Meta } = Card
 const {Paragraph} = Typography
 const { Panel } = Collapse;
 let isMobile;
@@ -155,19 +155,24 @@ export default class Home extends Component {
         return (
             <div>
               <Row>
-                <Col span= {24}>
-                {/* <Banner
-                    id="Banner1_0"
-                    key="Banner1_0"
-                    dataSource={Banner10DataSource}
-                    isMobile={this.state.isMobile}
-                /> */}
+                <Col span= {24} >
                 <Carousel autoplay>
                   <div className="bg1">
-                    &nbsp;	
+                    {/*
+                    Todo :   move the text to left top side     change the font size to largger    change the font color to white
+                    */}
+                  <div>
+                    <h1>Let`s Fight Flu</h1>
+                    <h1>Together!</h1>
+                  </div>
                   </div>
                   <div className="bg2">
-                    &nbsp;	
+                  <div>
+                    <h1>Take Vaccines</h1>
+                    </div>
+                    <div>
+                    <h1>Stay Healthy</h1>
+                  </div>
                   </div>
                 </Carousel>
                 </Col> 
@@ -197,23 +202,39 @@ export default class Home extends Component {
 
                 <Col md={24} lg={{span:8}} >
                 <Card 
-                    style={{height:"590px", marginLeft:'48px'}}
-                    cover={<img  src={rightSiderImg2} alt="example" style={{height:"580px"}} />}
+                    style={{height:"300px", marginLeft:'48px'}}
                   >
+                    <div style={{position: "relative", top:'50px', textAlign: "center" }}>
+                      This is some text in a div element!
+                      {/*
+                        During the influenza season, people aged 50 years or above accounted for more than
+                        
+                        Receiving flu shot each year can reduce your chances of contracting flu by 60%
+                        
+                        Replace "up to" to "be"
+                      */}
+                    </div>
+                    <img  src={rightSiderImg2} alt="example" style={{width:"150px", position: "absolute", left:"50%", marginLeft:"-75px", bottom:"24px"}} />
                   </Card>
                 </Col>
                 <Col md ={24} lg={{span:8}} >
                   <Card 
-                      style={{height:"590px", marginLeft:'48px'}}
-                      cover={<img src={rightSiderImg3} alt="example" style={{height:"590px"}} />}
+                      style={{height:"300px", marginLeft:'48px'}}
                     >
+                      <div style={{position: "relative", top:'50px', textAlign: "center" }}>
+                      This is some text in a div element!
+                    </div>
+                    <img  src={rightSiderImg3} alt="example" style={{width:"150px", position: "absolute", left:"50%", marginLeft:"-75px", bottom:"24px"}} />
                   </Card>
                 </Col>
                 <Col md ={24} lg={{span:8}} >
                   <Card 
-                      style={{height:"590px", marginLeft:'48px', marginRight:'48px'}}
-                      cover={<img src={rightSiderImg4} alt="example" style={{height:"590px"}} />}
+                      style={{height:"300px", marginLeft:'48px', marginRight:'48px'}}
                     >
+                      <div style={{position: "relative", top:'50px', textAlign: "center" }}>
+                      This is some text in a div element!
+                    </div>
+                    <img  src={rightSiderImg4} alt="example" style={{width:"150px", position: "absolute", left:"50%", marginLeft:"-75px", bottom:"24px"}} />
                   </Card>
                 </Col>
               </Row>

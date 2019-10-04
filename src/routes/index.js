@@ -4,7 +4,12 @@ import{
     Recommondations,
     Quiz,
     Travel,
-    NotFound
+    NotFound,
+    Login,
+    Register,
+    Account,
+    AddNewGrandParent,
+    EditGrandParent
 } from '../views'
 
 
@@ -38,6 +43,29 @@ export const mainRoutes = [
         component: Travel,
         title : "Travel",
         isNav : true,
+    },
+    {
+        pathname: "/Login",
+        component: Login
+    },
+    {
+        pathname: "/Register",
+        component: Register
+    },
+    {
+        pathname: "/Account",
+        component: Account,
+        exact: true,
+    },
+    {
+        pathname: "/Account/addnew/:id",
+        component: AddNewGrandParent,
+    
+    },
+    {
+        pathname: "/Account/edit/:id",
+        component: EditGrandParent,
+    
     },
     {
         pathname: "/404",

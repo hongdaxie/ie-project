@@ -15,3 +15,11 @@
   .ant-carousel  .bg2{
     background: url("../../Home/imgs/banner3bg.jpg") center;
   }
+
+  .card-image {
+    position: "absolute";
+    left:"50%";
+    margin-left:"-75px";
+    bottom:"24px";
+    width:"150px", 
+  }

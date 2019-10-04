@@ -1,8 +1,10 @@
 import React from 'react';
 import TweenOne from 'rc-tween-one';
-import { Menu } from 'antd';
+import { Menu,Icon, Dropdown, Avatar , Badge } from 'antd';
 import { getChildrenToRender } from './utils';
 import { withRouter,Link } from "react-router-dom"
+import { connect } from 'react-redux'
+import { logout } from '../actions/user'
 
 const { Item, SubMenu } = Menu;
 
@@ -26,10 +28,58 @@ class Header extends React.Component {
     });
   };
 
+  onDropdownMenuSelected = ({key}) =>{
+    // console.log(key)
+    if(key === "/login"){
+      this.props.logout()
+    }
+    this.props.history.push(key)
+}
+
+  // This is equal to create a new react component
+  renderMenu = () => (
+    <Menu onClick={this.onDropdownMenuSelected} >
+      <Menu.Item key="/Account">
+            <Icon type="setting" />
+            Manage My Acount
+      </Menu.Item>
+      <Menu.Item key="/login">
+            <Icon type="logout" />
+            Logout 
+      </Menu.Item>
+    </Menu>
+  );
+
   render() {
-    const { dataSource, isMobile, ...props } = this.props;
+    const { dataSource, isMobile, isLogin, nickname, ...props } = this.props;
+    console.log(this.props)
     const { phoneOpen } = this.state;
     const navData = dataSource.Menu.children;
+    const account = 
+                    isLogin 
+                    ?
+                    <div className="my-notification" style={{float:"right"}}>
+                      <Dropdown overlay={this.renderMenu} trigger={['click','hover']}>
+                          <div style={{display:'flex', alignItems:'center'}}>
+                              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" /> 
+                              <span>Welcome {nickname}! </span>
+                                  <Icon type="down" />
+                          </div>
+                      </Dropdown>
+                    </div>
+                    :
+                    <div style={{float:"right"}}>
+                      <Menu
+                        mode={isMobile ? 'inline' : 'horizontal'}
+                        theme="light"
+                        onClick={this.onMenuClick}
+                      >
+                        <Item key = "login" style={{fontWeight:"bold", fontSize:"16px"}}>
+                          <a>Login</a>
+                        </Item>
+                      </Menu>
+                    </div>
+
     const navChildren = navData.map((item) => {
       const { children: a, subItem, ...itemProps } = item;
       if (subItem) {
@@ -132,12 +182,20 @@ class Header extends React.Component {
               onClick={this.onMenuClick}
             >
               {navChildren}
+              {account}
             </Menu>
+            
           </TweenOne>
+          
         </div>
+        
       </TweenOne>
     );
   }
 }
 
-export default withRouter(Header);
+const mapStateToProps = state => ({
+  isLogin : state.user.isLogin,
+})
+
+export default connect(mapStateToProps,{logout})(withRouter(Header));

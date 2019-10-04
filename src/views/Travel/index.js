@@ -617,7 +617,7 @@ export default class Travel extends Component {
                     height: 100, color: 'rgb(141,108,71)', fontSize:25
                   }}
                 > 
-                  Please select your journey!!!
+                  Please select your Destination!!!
                 </div>
                 <div
               style={{

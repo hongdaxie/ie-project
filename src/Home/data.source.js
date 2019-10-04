@@ -40,7 +40,7 @@ export const Nav30DataSource = {
         className: 'header3-item',
         children: {
           href: '#',
-          children: [{ children: 'Data', name: 'text' }],
+          children: [{ children: 'Flu Count(VIC)', name: 'text' }],
         },
       },
       {
@@ -536,7 +536,7 @@ export const Footer00DataSource = {
         title: { children: 'Data' },
         childWrapper: {
           children: [
-            { href: '/Recommondations', name: 'Data', children: 'Data' },
+            { href: '/Recommondations', name: 'Data', children: 'Flu Count(VIC)' },
           ],
         },
       },
