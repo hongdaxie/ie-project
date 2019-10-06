@@ -1,8 +1,8 @@
 import axios from "axios"
 
 const service = axios.create({
-    // baseURL: "http://api.age50vaccine.ml"
-    baseURL: "http://localhost:8080"
+    baseURL: "http://api.age50vaccine.ml"
+    // baseURL: "http://localhost:8080"
 })
 
 
@@ -57,4 +57,8 @@ export const updateGrandparent = (newGrandparentInfo) =>{
             'Content-Type': 'application/json',
         }
     })
+}
+
+export const sendNotificationById = (id) =>{
+    return service.get(`/grandparent/sendNotification/${id}`)
 }

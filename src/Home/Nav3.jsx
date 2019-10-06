@@ -60,8 +60,8 @@ class Header extends React.Component {
                     ?
                     <div className="my-notification" style={{float:"right"}}>
                       <Dropdown overlay={this.renderMenu} trigger={['click','hover']}>
-                          <div style={{display:'flex', alignItems:'center'}}>
-                              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" /> 
+                          <div style={{display:'flex', alignItems:'center', fontSize: "16px", fontWeight: "bold"}}>
+                              {/* <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />  */}
                               <span>Welcome {nickname}! </span>
                                   <Icon type="down" />
                           </div>

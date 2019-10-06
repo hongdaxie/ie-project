@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { getGrandparentById, updateGrandparent } from '../../requests'
-import { Form, Input, Tooltip, Icon, Col, Button, Card, message, Spin, Switch } from 'antd'
+import { Form, Input, Tooltip, Icon, Col, Button, Card, message, Spin, DatePicker,Select } from 'antd'
 import { withRouter } from 'react-router-dom'
+import moment from 'moment';
 
-
+const { Option } = Select;
+const { MonthPicker } = DatePicker
 class Edit extends Component {
     constructor(){
         super()
@@ -20,13 +22,15 @@ class Edit extends Component {
         getGrandparentById(this.props.match.params.id)
             .then(resp => {
                 if(resp.data){
-                    console.log(resp.data)
+                    // console.log(resp.data)
                     // console.log(this.props.form)
                     this.props.form.setFieldsValue({
                         email: resp.data.email,
                         name: resp.data.name,
                         relationship: resp.data.relationship,
-                        receiveNotification: resp.data.receiveNotification
+                        lastVaccineDate: moment(resp.data.lastVaccineDate, "YYYY-MM-DD"),
+                        phoneNumber : resp.data.phoneNumber
+                        // receiveNotification: resp.data.receiveNotification
                     })
                 }
             })
@@ -42,7 +46,16 @@ class Edit extends Component {
         e.preventDefault()
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                // console.log('Received values of form: ', values);
+                const currentYear = new Date().getFullYear()
+                if(values["lastVaccineDate"].year() < currentYear){
+                    values["nextVaccineDate"] = moment().format('YYYY-MM-DD')
+                }else{
+                    values["nextVaccineDate"] = `${currentYear+1}-04-01`
+                }
+                // console.log(values["nextVaccineDate"])
+                const date = values['lastVaccineDate'].format("YYYY-MM-01")
+                values["lastVaccineDate"] = date
                 this.setState({
                     isUpdating: true
                 })
@@ -70,6 +83,18 @@ class Edit extends Component {
         })
     }
 
+    validateToPhoneNumber = (rule, value, callback) => {
+        const phonePattern = /^04\d{8}$/
+        console.log("111")
+        if(!phonePattern.test(value)){
+            console.log("222")
+            callback('You should input legal phone number! Such as: 0413174686 ');
+        }else{
+            console.log("333")
+            callback()
+        }
+    }
+
     componentDidMount(){
         this.getItemData()
     }
@@ -78,7 +103,17 @@ class Edit extends Component {
         // console.log(this.props.match.params.id)
         // console.log(this.props.location.state.userid)
         // console.log(this.props)
+        const config = {
+            rules: [{ type: 'object', required: true, message: 'Please select time!' }],
+        };
         const { getFieldDecorator } = this.props.form;
+        const prefixSelector = getFieldDecorator('prefix', {
+            initialValue: '61',
+          })(
+            <Select style={{ width: 70 }}>
+              <Option value="61">+61</Option>
+            </Select>,
+          )
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },
@@ -146,8 +181,22 @@ class Edit extends Component {
                         rules: [{ required: true, message: 'Please input relationship!', whitespace: true }],
                     })(<Input disabled = {this.state.isUpdating}/>)}
                     </Form.Item>
-                    <Form.Item label="Receive notification">
-                    {getFieldDecorator('receiveNotification', { valuePropName: 'checked' })(<Switch />)}
+                    <Form.Item 
+                        label={
+                            <span>
+                            Vaccine record&nbsp;
+                            <Tooltip title="When was the last tiem that the person took the flu shot?">
+                            <Icon type="question-circle-o" />
+                            </Tooltip>
+                            </span>
+                        }
+                    >
+                        {getFieldDecorator('lastVaccineDate', config)(<MonthPicker />)}
+                    </Form.Item>
+                    <Form.Item label="Phone Number">
+                        {getFieldDecorator('phoneNumber', {
+                        rules: [{ required: true, message: 'Please input your phone number!' }, { validator: this.validateToPhoneNumber }],
+                        })(<Input addonBefore={prefixSelector} placeholder="eg.0431374686" style={{ width: '100%' }} />)}
                     </Form.Item>
                     <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit" loading={this.state.isUpdating}>

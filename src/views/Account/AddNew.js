@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
-import { Form, Input, Tooltip, Icon, Col, Button, Card, message,Switch } from 'antd'
+import { Form, Input, Tooltip, Icon, Col, Button, Card, message, DatePicker, Select } from 'antd'
 import { addNewGrandparent } from '../../requests'
 import { withRouter } from 'react-router-dom'
+import * as moment from 'moment'
 
+
+const { Option } = Select;
+const { MonthPicker } = DatePicker
 class AddNew extends Component {
     constructor(){
         super()
@@ -15,8 +19,18 @@ class AddNew extends Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
           if (!err) {
-            // console.log('Received values of form: ', values)
-            values.receiveNotification = values.receiveNotification? values.receiveNotification : false
+            // console.log(values["lastVaccineDate"].year())
+            const currentYear = new Date().getFullYear()
+            if(values["lastVaccineDate"].year() < currentYear){
+                values["nextVaccineDate"] = moment().format('YYYY-MM-DD')
+            }else{
+                values["nextVaccineDate"] = `${currentYear+1}-04-01`
+            }
+            // console.log(values["nextVaccineDate"])
+            const date = values['lastVaccineDate'].format("YYYY-MM-01")
+            values["lastVaccineDate"] = date
+            console.log('Received values of form: ', values)
+            // values.receiveNotification = values.receiveNotification? values.receiveNotification : false
             const user =  {id: this.props.match.params.id}
             values.userid = user
             const parentInfo =  JSON.stringify(values)
@@ -43,10 +57,31 @@ class AddNew extends Component {
             }
         });
     };
+    
+    validateToPhoneNumber = (rule, value, callback) => {
+        const phonePattern = /^04\d{8}$/
+        console.log("111")
+        if(!phonePattern.test(value)){
+            console.log("222")
+            callback('You should input legal phone number! Such as: 0413174686 ');
+        }else{
+            console.log("333")
+            callback()
+        }
+    }
 
     render() {
+        // console.log(moment().format('YYYY-MM-DD'))
         // console.log(this.props.match.params.id)
         const { getFieldDecorator } = this.props.form;
+        const prefixSelector = getFieldDecorator('prefix', {
+            initialValue: '61',
+          })(
+            <Select style={{ width: 70 }}>
+              <Option value="61">+61</Option>
+            </Select>,
+          )
+        
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },
@@ -68,6 +103,10 @@ class AddNew extends Component {
             offset: 8,
             },
             },
+        };
+
+        const config = {
+            rules: [{ type: 'object', required: true, message: 'Please select time!' }],
         };
 
         return (
@@ -113,8 +152,22 @@ class AddNew extends Component {
                         rules: [{ required: true, message: 'Please input relationship!', whitespace: true }],
                     })(<Input disabled = {this.state.isLoading}/>)}
                     </Form.Item>
-                    <Form.Item label="Receive notification">
-                    {getFieldDecorator('receiveNotification', { valuePropName: 'checked' })(<Switch />)}
+                    <Form.Item 
+                        label={
+                            <span>
+                            Vaccine record&nbsp;
+                            <Tooltip title="When was the last tiem that the person took the flu shot?">
+                            <Icon type="question-circle-o" />
+                            </Tooltip>
+                            </span>
+                        }
+                    >
+                        {getFieldDecorator('lastVaccineDate', config)(<MonthPicker />)}
+                    </Form.Item>
+                    <Form.Item label="Phone Number">
+                        {getFieldDecorator('phoneNumber', {
+                        rules: [{ required: true, message: 'Please input your phone number!' }, { validator: this.validateToPhoneNumber }],
+                        })(<Input addonBefore={prefixSelector} placeholder="e.g.0431374686" style={{ width: '100%' }} />)}
                     </Form.Item>
                     <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit" loading={this.state.isLoading}>

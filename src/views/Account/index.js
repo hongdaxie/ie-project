@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
-import { Tag,Row, Col, Card, Icon, Layout, List, Modal, Typography, message } from 'antd'
-import { getAllGrandparentsById , deleteGrandparentById} from '../../requests'
+import { Tag,Row, Col, Card, Icon, Layout, List, Modal, Typography, message, Button } from 'antd'
+import { getAllGrandparentsById , deleteGrandparentById, sendNotificationById} from '../../requests'
 
 const {Content, Sider } = Layout;
 
@@ -23,7 +23,8 @@ class Account extends Component {
             isShowDeleteModal : false,
             deleteItemName: '',
             deleteItemConfirmLoading: false,
-            selectedItemId: null
+            selectedItemId: null,
+            isSendingNotification: false,
         }
     }
 
@@ -82,6 +83,27 @@ class Account extends Component {
             })
     }
 
+    sendNotification = (id) => {
+        console.log(id)
+        this.setState({
+            loadingData: true
+        })
+        sendNotificationById(id)
+            .then(resp => {
+                console.log(resp.data)
+                if(Object.keys(resp.data)[0] === "success"){
+                    message.success(resp.data.success)
+                }else{
+                    message.error(resp.data.error)
+                }
+            })
+            .finally(()=>{
+                this.setState({
+                    loadingData: false
+                })
+            })
+    }
+
     hideDeleteModal = () =>{
         this.setState({
             isShowDeleteModal:false,
@@ -114,7 +136,8 @@ class Account extends Component {
     render() {
         // console.log("11")
         // console.log(this.state)
-
+        const currentYear = new Date().getFullYear()
+        const year = currentYear.toString()
         return (
             !this.props.isLogin
             ?
@@ -156,7 +179,11 @@ class Account extends Component {
                                     <div>name : {item.name}</div>
                                     <div>email : {item.email}</div>
                                     <div>relationship: {item.relationship}</div>
-                                    <div>Recerive notification: <Tag color={item.receiveNotification? "#87d068" : "#f50"}>{item.receiveNotification? "Yes": "No"}</Tag></div>
+                                    {/* <div>Recerive notification: <Tag color={item.receiveNotification? "#87d068" : "#f50"}>{item.receiveNotification? "Yes": "No"}</Tag></div> */}
+                                    <div>Phone: {item.phoneNumber}</div>
+                                    <div>Next Vaccine date: <Tag color={item.nextVaccineDate.substring(0,4)=== year ? "#f50" : "#87d068"}>{item.nextVaccineDate}</Tag></div>
+                                    <br />
+                                    <Button type="primary" onClick = {this.sendNotification.bind(this, item.id)} >Send notification</Button>
                                 </div>
                                     
                                 </Card>

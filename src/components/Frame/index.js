@@ -31,7 +31,7 @@ class Frame extends Component {
         this.state = {
           isMobile,
           show: !location.port,
-          isAdmin : true,
+          isAdmin : false,
           // isLogin : false
         };
       }

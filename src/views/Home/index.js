@@ -10,10 +10,10 @@ import {
 import{
   Row,
   Col,
-  Card,Collapse,Typography, Carousel
+  Card,Collapse,Typography, Carousel, Statistic, Icon
 } from 'antd'
 import rightSiderImg2 from './homePageRightSide1_meitu_1.jpg'
-import rightSiderImg3 from './homePageRightSide2_meitu_1.jpg'
+import rightSiderImg3 from './homePageRightSide4_meitu_3.jpg'
 import rightSiderImg4 from './homePageRightSide3_meitu_2.jpg'
 import vaccine1 from './vaccine1.jpg'
 import vaccine2 from './vaccine2.jpg'
@@ -161,17 +161,14 @@ export default class Home extends Component {
                     {/*
                     Todo :   move the text to left top side     change the font size to largger    change the font color to white
                     */}
-                  <div>
-                    <h1>Let`s Fight Flu</h1>
-                    <h1>Together!</h1>
+                  <div style={{fontSize:"24px"}}>
+                      Let`s Fight Flu Together! 
                   </div>
                   </div>
                   <div className="bg2">
-                  <div>
-                    <h1>Take Vaccines</h1>
-                    </div>
-                    <div>
-                    <h1>Stay Healthy</h1>
+                  <div style={{fontSize:"24px"}}>
+                    Take Vaccines
+                    Stay Healthy
                   </div>
                   </div>
                 </Carousel>
@@ -202,15 +199,26 @@ export default class Home extends Component {
 
                 <Col md={24} lg={{span:8}} >
                 <Card 
-                    style={{height:"300px", marginLeft:'48px'}}
+                    style={{height:"350px", marginLeft:'48px'}}
                   >
                     <div style={{position: "relative", top:'50px', textAlign: "center" }}>
-                      This is some text in a div element!
+                    <div style={{fontWeight: "bold", fontSize: "16px"}}>
+                      During the influenza season, people aged 50 years or above accounted for more than
+                    </div>
+                      <Statistic
+                        title=""
+                        value={90}
+                        // precision={2}
+                        valueStyle={{ color: '#3f8600', fontSize: "36px" }}
+                        prefix={<Icon type="arrow-up" />}
+                        suffix="%"
+                      />
                       {/*
                         During the influenza season, people aged 50 years or above accounted for more than
                         
                         Receiving flu shot each year can reduce your chances of contracting flu by 60%
                         
+                        Experts predict that by the end of 2019 in Australia, the number of flu related deaths will be 
                         Replace "up to" to "be"
                       */}
                     </div>
@@ -219,22 +227,44 @@ export default class Home extends Component {
                 </Col>
                 <Col md ={24} lg={{span:8}} >
                   <Card 
-                      style={{height:"300px", marginLeft:'48px'}}
+                      style={{height:"350px", marginLeft:'48px'}}
                     >
                       <div style={{position: "relative", top:'50px', textAlign: "center" }}>
-                      This is some text in a div element!
+                        <div
+                          style={{fontWeight: "bold", fontSize: "16px"}}
+                        >
+                          Receiving flu shot each year can reduce your chances of contracting flu by
+                        </div>
+                      <Statistic
+                        title=""
+                        value={60}
+                        // precision={2}
+                        valueStyle={{ color: '#3f8600', fontSize: "36px" }}
+                        prefix={<Icon type="arrow-up" />}
+                        suffix="%"
+                      />
                     </div>
-                    <img  src={rightSiderImg3} alt="example" style={{width:"150px", position: "absolute", left:"50%", marginLeft:"-75px", bottom:"24px"}} />
+                    <img  src={rightSiderImg4} alt="example" style={{width:"150px", position: "absolute", left:"50%", marginLeft:"-75px", bottom:"24px"}} />
                   </Card>
                 </Col>
                 <Col md ={24} lg={{span:8}} >
                   <Card 
-                      style={{height:"300px", marginLeft:'48px', marginRight:'48px'}}
+                      style={{height:"350px", marginLeft:'48px', marginRight:'48px'}}
                     >
                       <div style={{position: "relative", top:'50px', textAlign: "center" }}>
-                      This is some text in a div element!
+                        <div style={{fontWeight: "bold", fontSize: "16px"}}>
+                          By the end of 2019 in Australia, the number of flu related deaths will be
+                        </div>
+                        <Statistic
+                        title=""
+                        value={4000}
+                        // precision={2}
+                        valueStyle={{ color: '#3f8600', fontSize: "36px" }}
+                        prefix={<Icon type="arrow-up" />}
+                        // suffix="%"
+                      />
                     </div>
-                    <img  src={rightSiderImg4} alt="example" style={{width:"150px", position: "absolute", left:"50%", marginLeft:"-75px", bottom:"24px"}} />
+                    <img  src={rightSiderImg3} alt="example" style={{width:"150px", position: "absolute", left:"50%", marginLeft:"-75px", bottom:"24px"}} />
                   </Card>
                 </Col>
               </Row>
@@ -246,9 +276,7 @@ export default class Home extends Component {
                   >
                       <div id="recentFluChart" style={{height:'590px'}}/>
                   </Card>
-                </Col> */}
-                
-
+                    </Col> */}
               
                 <Col md={24} lg={{span:22, offset:1}}>
                 <div style={{marginTop:"8px"}}>
