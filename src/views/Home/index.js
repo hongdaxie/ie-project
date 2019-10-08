@@ -161,14 +161,13 @@ export default class Home extends Component {
                     {/*
                     Todo :   move the text to left top side     change the font size to largger    change the font color to white
                     */}
-                  <div style={{fontSize:"24px"}}>
+                  <div style={{fontSize: "36px", fontWeight: "bold", marginLeft: "250px"}}>
                       Let`s Fight Flu Together! 
                   </div>
                   </div>
                   <div className="bg2">
-                  <div style={{fontSize:"24px"}}>
-                    Take Vaccines
-                    Stay Healthy
+                  <div style={{fontSize:"36px", fontWeight: "bold", marginLeft: "250px", color: "#66d9ff"}}>
+                    Take Vaccines Stay Healthy
                   </div>
                   </div>
                 </Carousel>

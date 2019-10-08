@@ -1,4 +1,5 @@
 .ant-carousel .slick-slide {
+    /* vertical-align: text-top; */
     text-align: center;
     height: 600px;
     line-height: 600px;

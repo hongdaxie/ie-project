@@ -144,17 +144,13 @@ class Account extends Component {
             <Redirect to="./login"/>
             :
             <Layout>
-                <Sider style={{margin: "24px", background: '#fff'}}>
-                {/* <Card
-                    // title= {}
-                    description="This is the description"
-                > */}
+                {/* <Sider style={{margin: "24px", background: '#fff'}}>
+                
                     <div style={{textAlign:"center", fontWeight:"bold", fontSize:"18px"}}>{`Hi, ${this.props.nickname}!`}</div>
 
-                {/* </Card > */}
-                </Sider>
+                </Sider> */}
                 <Content style={{ padding: '24px', minHeight: 280 }}>
-                <Col>                
+                <Col lg={{span:16, offset:4}} md = {{span: 22, offset:1}}>               
                 {/* <ConfigProvider renderEmpty={customizeRenderEmpty}> */}
                 <List
                     loading= {this.state.loadingData}
@@ -176,7 +172,7 @@ class Account extends Component {
                                 ]}
                                 >
                                 <div style={{textAlign:"center"}}>
-                                    <div>name : {item.name}</div>
+                                    <div style={{fontSize: "24px", fontWeight: "bold"}}>{item.name}</div>
                                     <div>email : {item.email}</div>
                                     <div>relationship: {item.relationship}</div>
                                     {/* <div>Recerive notification: <Tag color={item.receiveNotification? "#87d068" : "#f50"}>{item.receiveNotification? "Yes": "No"}</Tag></div> */}
