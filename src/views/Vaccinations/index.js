@@ -170,6 +170,7 @@ export default class Vaccination extends Component {
                             <List.Item>
                                 <Card 
                                     hoverable
+                                    onClick={this.handleMapClick.bind(this, i)}
                                 >
                                 <Row gutter={16}>
                                 <Col
@@ -197,9 +198,10 @@ export default class Vaccination extends Component {
                                 <Col
                                     span = {4}
                                 >
-                                    <div className={"mapIcon"} onClick={this.handleMapClick.bind(this, i)}><FontAwesomeIcon  icon={faMapMarked}  /> Map </div>
+                                    <div className={"mapIcon"} ><FontAwesomeIcon  icon={faMapMarked}  /> Map </div>
                                 </Col>
                                 </Row>
+                                </Card>
                                 <Modal
                                     visible={this.state.dataSource[i].isMapVisible}
                                     title={item.name}
@@ -209,7 +211,6 @@ export default class Vaccination extends Component {
                                 >
                                     <GoogleMap item = {item} />
                                 </Modal>
-                                </Card>
                             </List.Item>
                         )
                     }
