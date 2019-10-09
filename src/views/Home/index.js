@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react'
 // import Banner from '../../Home/Banner1';
 import Feature from '../../Home/Feature0';
 import { enquireScreen } from 'enquire-js';
-import echarts from "echarts"
+// import echarts from "echarts"
 import {  
     // Banner10DataSource,
     Feature00DataSource,
@@ -19,7 +19,7 @@ import vaccine1 from './vaccine1.jpg'
 import vaccine2 from './vaccine2.jpg'
 import './index.css'
 
-const { Meta } = Card
+// const { Meta } = Card
 const {Paragraph} = Typography
 const { Panel } = Collapse;
 let isMobile;
@@ -29,35 +29,35 @@ let isMobile;
 
 const { location } = window;
 
-const chartData = [
-  ['ageGrop','2018','2019'],
-  ['age 50-54', 716, 1797],
-  ['age 55-59', 698, 1891],
-  ['age 60-64', 662, 1739],
-  ['age 65-69', 523, 1397],
-  ['age 70-74', 440, 1287],
-  ['age 75-79', 374, 1065],
-  ['age 80-84', 295, 1088],
-  ['age 85+', 388, 1616]
-]
+// const chartData = [
+//   ['ageGrop','2018','2019'],
+//   ['age 50-54', 716, 1797],
+//   ['age 55-59', 698, 1891],
+//   ['age 60-64', 662, 1739],
+//   ['age 65-69', 523, 1397],
+//   ['age 70-74', 440, 1287],
+//   ['age 75-79', 374, 1065],
+//   ['age 80-84', 295, 1088],
+//   ['age 85+', 388, 1616]
+// ]
 
-const recentChartData = [
-  // {date: "May-20", value: 1149},
-  ['year','0-4','5-64','65+'],
-  // ['2004', 3, 3, 30],
-  // ['2005', 2, 9, 28],
-  // ['2006', 3, 2, 11],
-  // ['2007', 5, 13, 55],
-  // ['2008', 0, 12, 34],
-  // ['2009', 3, 78, 46],
-  // ['2010', 2, 26, 17],
-  // ['2011', 2, 28, 39],
-  ['2012', 5, 16, 131],
-  ['2013', 2, 26, 52],
-  ['2014', 5, 57, 197],
-  ['2015', 4, 29, 256],
-  ['2016', 3, 47, 414],
-]
+// const recentChartData = [
+//   // {date: "May-20", value: 1149},
+//   ['year','0-4','5-64','65+'],
+//   // ['2004', 3, 3, 30],
+//   // ['2005', 2, 9, 28],
+//   // ['2006', 3, 2, 11],
+//   // ['2007', 5, 13, 55],
+//   // ['2008', 0, 12, 34],
+//   // ['2009', 3, 78, 46],
+//   // ['2010', 2, 26, 17],
+//   // ['2011', 2, 28, 39],
+//   ['2012', 5, 16, 131],
+//   ['2013', 2, 26, 52],
+//   ['2014', 5, 57, 197],
+//   ['2015', 4, 29, 256],
+//   ['2016', 3, 47, 414],
+// ]
 
 export default class Home extends Component {
 

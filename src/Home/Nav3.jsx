@@ -1,6 +1,6 @@
 import React from 'react';
 import TweenOne from 'rc-tween-one';
-import { Menu,Icon, Dropdown, Avatar , Badge } from 'antd';
+import { Menu,Icon, Dropdown  } from 'antd';
 import { getChildrenToRender } from './utils';
 import { withRouter,Link } from "react-router-dom"
 import { connect } from 'react-redux'

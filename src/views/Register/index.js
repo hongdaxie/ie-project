@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Form, Input, Tooltip, Icon, Col, Button, Card, DatePicker, } from 'antd'
+import { Form, Input, Tooltip, Icon, Col, Button, Card, } from 'antd'
 import {connect} from 'react-redux'
 import { register } from '../../actions/register'
 import { Redirect } from 'react-router-dom'
 
-const { MonthPicker } = DatePicker
+// const { MonthPicker } = DatePicker
 class Register extends Component {
 
     constructor(){

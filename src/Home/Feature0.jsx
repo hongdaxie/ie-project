@@ -3,7 +3,7 @@ import QueueAnim from 'rc-queue-anim';
 import { Row, Col, Card } from 'antd';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 import { getChildrenToRender } from './utils';
-import { withRouter,Link } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 
 class Content extends React.PureComponent {
   render() {

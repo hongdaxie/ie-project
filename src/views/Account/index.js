@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
-import { Tag,Row, Col, Card, Icon, Layout, List, Modal, Typography, message, Button } from 'antd'
+import { Tag, Col, Card, Icon, Layout, List, Modal, Typography, message, Button } from 'antd'
 import { getAllGrandparentsById , deleteGrandparentById, sendNotificationById} from '../../requests'
 
-const {Content, Sider } = Layout;
+const {Content } = Layout;
 
 // const customizeRenderEmpty = () => (
 //     <div style={{ textAlign: 'center' }}>
